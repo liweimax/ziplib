@@ -1,0 +1,14 @@
+project(bzip2 C)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
+if(MSVC)
+    add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
+    add_definitions(-D_CRT_NONSTDC_NO_DEPRECATE)
+endif()
+
+FILE(GLOB BZIP2_SRCS *.c)
+FILE(GLOB BZIP2_HEADER *.h)
+
+add_library(${PROJECT_NAME} STATIC ${BZIP2_SRCS} ${BZIP2_HEADER})
+SET_PROPERTY(TARGET ${PROJECT_NAME}  PROPERTY FOLDER "extlibs")
