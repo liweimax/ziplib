@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(ZipLib)
+project(ZipStream)
 
 option( BUILD_ZIP "Build ZIP" ON )
 option( BUILD_BZIP2 "Build BZIP" ON )
 option( BUILD_LZMA "Build LZMA" ON )
 option( BUILD_TOOLS "Build Tools" ON )
+
+set(STREAM_PROJECT_NAME "ZipStream")
 
 IF(BUILD_ZIP)
     FIND_PACKAGE(ZLIB)
@@ -50,5 +52,8 @@ SET(EXECUTABLE_OUTPUT_PATH ${OUTPUT_DIR})
 SET(LIBRARY_OUTPUT_PATH ${OUTPUT_DIR})
 
 add_subdirectory(extlibs)
-add_subdirectory(src)
-add_subdirectory(sample)
+add_subdirectory(ziplib)
+add_subdirectory(stream)
+if(BUILD_TOOLS)
+	add_subdirectory(sample)
+endif(BUILD_TOOLS)
