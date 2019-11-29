@@ -6,7 +6,10 @@
 
 #include "ZipFile.h"
 #include "streams/memstream.h"
+
+#ifdef _USE_BZIP2
 #include "methods/Bzip2Method.h"
+#endif
 
 #include <fstream>
 
@@ -59,8 +62,9 @@ TEST_METHOD(Sample_ZipFile)
   try
   {
     printf("[+] Compressing '%s'\n", fileIn1);
+#ifdef _USE_LZMA
     ZipFile::AddFile(zipFilename, fileIn1, LzmaMethod::Create());
-
+#endif
     ListZipArchive();
 
     printf("[+] Compressing & encrypting '%s' as '%s'\n", fileIn2, fileIn2Dest);
@@ -85,6 +89,7 @@ TEST_METHOD(Sample_ZipFile)
   }
 }
 
+#ifdef _USE_BZIP2
 TEST_METHOD(Sample_ZipArchive_Stream_Deferred_Comment)
 {
   ZipArchive::Ptr archive = ZipFile::Open(zipFilename);
@@ -118,6 +123,7 @@ TEST_METHOD(Sample_ZipArchive_Stream_Deferred_Comment)
 
   ListZipArchive();
 }
+#endif
 
 TEST_METHOD(Sample_ZipArchive_Stream_Immediate_Store_Own_Save_Password_Protected)
 {
@@ -228,7 +234,9 @@ int main()
   remove(fileOut3);
 
   Sample_ZipFile();
+#ifdef _USE_BZIP2
   Sample_ZipArchive_Stream_Deferred_Comment();
+#endif
   Sample_ZipArchive_Stream_Immediate_Store_Own_Save_Password_Protected();
   Sample_ZipArchive_Decompress_Password_Protected();
   //Sample_EXAMPLE();
