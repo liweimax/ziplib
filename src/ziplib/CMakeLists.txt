@@ -5,13 +5,9 @@ INCLUDE_DIRECTORIES(
     .
 )
 
-
-
-
 if(MSVC)
     add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
     add_definitions(-D_CRT_NONSTDC_NO_DEPRECATE)
-
 endif()
 
 FILE(GLOB PROJECT_SRC *.cpp)
@@ -32,3 +28,5 @@ if(USE_EXTLIBS_LZMA)
 	add_dependencies(${PROJECT_NAME} lzma)
 	target_link_libraries(${PROJECT_NAME} lzma)
 endif(USE_EXTLIBS_LZMA)
+
+SET_PROPERTY(TARGET ${PROJECT_NAME} PROPERTY FOLDER "Zip")

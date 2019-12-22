@@ -2,7 +2,7 @@
 project(ziplib-test)
 
 INCLUDE_DIRECTORIES(
-	${CMAKE_SOURCE_DIR}/ziplib
+	${STREAM_SRC_DIR}/ziplib
     .
 )
 
@@ -13,4 +13,4 @@ add_executable(${PROJECT_NAME} ${PROJECT_SRC} ${PROJECT_HEADER})
 
 add_dependencies(${PROJECT_NAME} ziplib)
 target_link_libraries(${PROJECT_NAME} ziplib)
-SET_PROPERTY(TARGET ziplib-test PROPERTY FOLDER "tool")
+SET_PROPERTY(TARGET ziplib-test PROPERTY FOLDER "Zip/tool")

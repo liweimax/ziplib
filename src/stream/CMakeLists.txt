@@ -2,7 +2,7 @@
 project(${STREAM_PROJECT_NAME})
 
 INCLUDE_DIRECTORIES(
-    ${CMAKE_SOURCE_DIR}/ziplib
+    ${STREAM_SRC_DIR}/ziplib
 	.
 )
 
@@ -15,3 +15,5 @@ add_library(${PROJECT_NAME} SHARED ${PROJECT_SRC} ${PROJECT_HEADER})
 
 add_dependencies(${PROJECT_NAME} ziplib)
 target_link_libraries(${PROJECT_NAME} ziplib)
+
+SET_PROPERTY(TARGET ${PROJECT_NAME} PROPERTY FOLDER "Zip")
